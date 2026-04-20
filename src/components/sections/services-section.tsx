@@ -1,6 +1,7 @@
 import { useReveal } from "@/hooks/use-reveal"
+import { MagneticButton } from "@/components/magnetic-button"
 
-export function ServicesSection() {
+export function ServicesSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
   const { ref, isVisible } = useReveal(0.3)
 
   return (
@@ -10,41 +11,52 @@ export function ServicesSection() {
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-8 transition-all duration-700 md:mb-12 ${
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Услуги
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши компетенции</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Медицинский маркетинг 2026</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
+        <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-10 lg:gap-x-24">
           {[
             {
-              title: "Веб-разработка",
-              description: "Создание современных веб-приложений любой сложности",
+              title: "Геосервисы",
+              description: "Яндекс Карты, 2ГИС, Google Maps — упаковка и сопровождение под ключ. Выводим вашу клинику в ТОП по ключевым запросам.",
               direction: "top",
             },
             {
-              title: "UI/UX Дизайн",
-              description: "Проектирование удобных и красивых интерфейсов",
+              title: "Медицинские порталы",
+              description: "ПроДокторов, СберЗдоровье, НаПоправку — превращаем профиль на агрегаторе в стабильный канал записи пациентов.",
               direction: "right",
             },
             {
-              title: "Мобильные приложения",
-              description: "Кроссплатформенная разработка для iOS и Android",
+              title: "Соцсети для клиник",
+              description: "Создаём контент, который снимает страхи пациента и закрывает возражения до визита в клинику.",
               direction: "left",
             },
             {
-              title: "Консалтинг",
-              description: "Техническая экспертиза и стратегическое планирование",
+              title: "Медицинский PR",
+              description: "Экспертные публикации врачей в авторитетных СМИ, выступления на конференциях, аудио и видео-подкастах.",
               direction: "bottom",
             },
           ].map((service, i) => (
             <ServiceCard key={i} service={service} index={i} isVisible={isVisible} />
           ))}
+        </div>
+
+        <div
+          className={`mt-8 transition-all duration-700 md:mt-10 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+          }`}
+          style={{ transitionDelay: "700ms" }}
+        >
+          <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
+            Бесплатная консультация
+          </MagneticButton>
         </div>
       </div>
     </section>
